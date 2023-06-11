@@ -1,7 +1,44 @@
 <html>
-<p>Sample workspace</p>
+<p id='sampleId'>Sample workspace</p>
 
 <head>
+
+<!-- <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"> -->
+<script>
+    function sample_update_inventory() {
+        document.getElementById('sampleId').innerHTML = 'TESTJS';
+
+         JQuery.ajax({
+         type: 'POST',
+         url: 'sample.php',
+         data: { item_name: '123123123', new_onhand: 11 },
+         success: function(response) {
+
+         }
+     });
+
+        // jQuery.ajax({
+        // type : 'POST',
+        // dataType : 'json',
+        // url : sample.php,
+        // data : { 
+        //     action: 'update_claim',
+        //     claim: claim_id_test,
+        //     status: new_status,
+        //     comment: decline_comment
+        //  // add your parameters herea
+        // },
+        //     success: function( response ) {
+        //     // Returns success json data
+        //     console.log( response );
+        // },
+        //     complete: function () {
+        //     console.log ( response );
+        // }
+        // });
+    }
+    
+</script>
 
 <style>
 table {
@@ -132,5 +169,9 @@ echo "</table>";
 mysqli_close($con);
 ?>
 </head>
+
+<body>
+<button type="button" onclick="sample_update_inventory()">invn update test</button>;
+</body>
 
 </html>
