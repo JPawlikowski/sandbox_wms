@@ -23,29 +23,33 @@ if ($conn->connect_error) {
 } 
 echo "<p>Connected successfully<p>";
 
-$sql = "SELECT sys_order_id, order_type, order_status FROM wmssandbox_digitalO.orders";
+$sql = "SELECT item_desc, pack_qty, on_hand_qty, allocated_qty, mod_dttm FROM wmssandbox_digitalO.inventory";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
   // output data of each row
   echo "<table>
   <tr>
-  <th>sys_order_id</th>
-  <th>order_type</th>
-  <th>order_status</th>
+  <th>item_desc</th>
+  <th>pack_qty</th>
+  <th>on_hand_qty</th>
+  <th>allocated_qty</th>
+  <th>mod_dttm</th>
   </tr>";
 
-  while($order_row = $result->fetch_assoc()) {
-  echo "<tr>";
-  echo "<td>" . $order_row['sys_order_id'] . "</td>";
-  echo "<td>" . $order_row['order_type'] . "</td>";
-  echo "<td>" . $order_row['order_status'] . "</td>";
-  echo "</tr>";
+  while($invn_row = $result->fetch_assoc()) {
+    echo "<tr>";
+    echo "<td>" . $invn_row['item_desc'] . "</td>";
+    echo "<td>" . $invn_row['pack_qty'] . "</td>";
+    echo "<td>" . $invn_row['on_hand_qty'] . "</td>";
+    echo "<td>" . $invn_row['allocated_qty'] . "</td>";
+    echo "<td>" . $invn_row['mod_dttm'] . "</td>";
+    echo "</tr>";
   }
   echo "</table>";
   
 } else {
-  echo "0 orders results";
+  echo "0 inventory results";
 }
 $conn->close();
 
