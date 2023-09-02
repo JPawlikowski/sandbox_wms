@@ -1,0 +1,56 @@
+<html>
+  <head>
+  <link href='style.css' rel='stylesheet'>
+  <script src='onCallSources.js'></script>
+    
+<script>
+function showOrdersFunc() {
+  var str = 1;
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("orderPlaceHold").innerHTML = this.responseText;
+    }
+  };
+  //xmlhttp.open("GET","getOrder.php?q=",true);
+  xmlhttp.open("GET","getOrders.php?q="+str,true);
+  xmlhttp.send();
+  };
+
+function showInvnFunc() {
+  var str = 1;
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("invnPlaceHold").innerHTML = this.responseText;
+    }
+  };
+  //xmlhttp.open("GET","getOrder.php?q=",true);
+  xmlhttp.open("GET","getInventory.php?q="+str,true);
+  xmlhttp.send();
+  }
+</script>
+</head>
+<body>
+<div class='topnav'>
+<a href='http://jakevalue.com/wifispeeds.php'>WifiSpeeds</a>
+<a href='http://jakevalue.com/sandbox.php'>ChessTracker</a>
+<a href='http://jakevalue.com/GS1checkdigit.php'>CheckDigit</a>
+<a href='http://jakevalue.com/creatingAChessSim.php'>creatingAChessSim</a>
+<a href='http://jakevalue.com/blog.php'>Blog</a>
+<a href='http://jakevalue.com/sampleRequests.php'>WMS</a>
+</div>
+  
+
+<button type="button" onclick="showOrdersFunc()">ORDER TEST</button>
+
+<div id="orderPlaceHold"><b>Order info will be listed here...</b></div>
+
+
+<button type="button" onclick="showInvnFunc()">INVN TEST</button>
+
+<div id="invnPlaceHold"><b>Order info will be listed here...</b></div>
+
+
+</body>
+</html>
