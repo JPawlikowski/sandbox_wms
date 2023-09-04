@@ -29,6 +29,20 @@ function showInvnFunc() {
   xmlhttp.open("GET","getInventory.php?q="+str,true);
   xmlhttp.send();
   }
+
+  function uploadOrderFunc() {
+    var orderRawData = document.getElementById("orderPayload").value;
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("orderUploadPlaceHold").innerHTML = this.responseText;
+      }
+    };
+    //xmlhttp.open("GET","getOrder.php?q=",true);
+    xmlhttp.open("GET","getUploadOrder.php?q="+orderRawData,true);
+    xmlhttp.send();
+  }
+
 </script>
 </head>
 <body>
@@ -41,16 +55,23 @@ function showInvnFunc() {
 <a href='http://jakevalue.com/sampleRequests.php'>WMS</a>
 </div>
   
+<div class='flex-container'>
 
 <button type="button" onclick="showOrdersFunc()">ORDER TEST</button>
 
 <div id="orderPlaceHold"><b>Order info will be listed here...</b></div>
-
 
 <button type="button" onclick="showInvnFunc()">INVN TEST</button>
 
 <div id="invnPlaceHold"><b>Order info will be listed here...</b></div>
 
 
+<button type="button" onclick="uploadOrderFunc()">ORDER UPLOAD</button>
+
+<input id='orderPayload' type='text'></input>
+
+<div id="orderUploadPlaceHold"><b>Order upload status...</b></div>
+
+</div>
 </body>
 </html>

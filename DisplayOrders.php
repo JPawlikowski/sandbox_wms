@@ -1,5 +1,19 @@
 
 <html>
+<style>
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table, td, th {
+  border: 1px solid black;
+  padding: 5px;
+}
+
+th {text-align: left;}
+</style>
+
 <?php
 
 echo "<p>Sample digital O WMS Sandbox connections</p>";
@@ -33,6 +47,8 @@ if ($result->num_rows > 0) {
   <th>sys_order_id</th>
   <th>order_type</th>
   <th>order_status</th>
+  <th>destination_facility</th>
+  <th>order_time</th>
   </tr>";
 
   while($order_row = $result->fetch_assoc()) {
@@ -40,6 +56,8 @@ if ($result->num_rows > 0) {
   echo "<td>" . $order_row['sys_order_id'] . "</td>";
   echo "<td>" . $order_row['order_type'] . "</td>";
   echo "<td>" . $order_row['order_status'] . "</td>";
+  echo "<td>" . $order_row['destination_facility'] . "</td>";
+  echo "<td>" . $order_row['order_time'] . "</td>";
   echo "</tr>";
   }
   echo "</table>";
