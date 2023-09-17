@@ -28,10 +28,11 @@ function showInvnFunc() {
   //xmlhttp.open("GET","getOrder.php?q=",true);
   xmlhttp.open("GET","getInventory.php?q="+str,true);
   xmlhttp.send();
-  }
-  function uploadOrderFuncTEST() {
+  };
+
+  function uploadOrderFunc() {
     //var orderRawData = {orderId: 0987654, destination: 9999, orderType: 'Regular'};
-    var orderRawData = document.getElementById("orderPayload").value;
+    var orderRawData = document.getElementById("orderInput").value;
     var orderParsed = JSON.parse(orderRawData);
     var orderRawTestJSON = JSON.stringify(orderParsed);
     var xmlhttp = new XMLHttpRequest();
@@ -45,7 +46,7 @@ function showInvnFunc() {
     xmlhttp.open("POST", 'getUploadOrder.php');
     xmlhttp.setRequestHeader("Content-Type", "application/json");
     xmlhttp.send(orderRawTestJSON);
-  }
+  };
 
 </script>
 </head>
@@ -58,21 +59,26 @@ function showInvnFunc() {
 <a href='http://jakevalue.com/blog.php'>Blog</a>
 <a href='http://jakevalue.com/sampleRequests.php'>WMS</a>
 </div>
+
+<p></p>
   
 <div class='flex-container'>
 
-<button type="button" onclick="showOrdersFunc()">ORDER TEST</button>
+<button type="button" onclick="showOrdersFunc()">Display Order Data</button>
 
 <div id="orderPlaceHold"><b>Order info will be listed here...</b></div>
 
-<button type="button" onclick="showInvnFunc()">INVN TEST</button>
+<br>
+
+<button type="button" onclick="showInvnFunc()">Display Inventory Data</button>
 
 <div id="invnPlaceHold"><b>Order info will be listed here...</b></div>
 
+<br>
 
-<button type="button" onclick="uploadOrderFuncTEST()">ORDER UPLOAD</button>
+<button type="button" onclick="uploadOrderFunc()">Upload Order</button>
 
-<input id='orderPayload' type='text'></input>
+<textarea id="orderInput" rows="7" cols="50"></textarea>
 
 <div id="orderUploadPlaceHold"><b>Order upload status...</b></div>
 

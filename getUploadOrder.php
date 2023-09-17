@@ -10,7 +10,11 @@ $payloadDecode = json_decode($requestPayload);
 $payloadOrderId = $payloadDecode->orderId;
 $payloadOrderType = $payloadDecode->orderType;
 $payloadDestination = $payloadDecode->destination;
+$PayloadOrderTime = $payloadDecode->orderTime;
 
+$uploadTimeRaw=time();
+$uploadTime = date("Y-m-d h:i:s",$uploadTimeRaw);
+echo $uploadTime;
 
 $myfile = fopen("/var/www/html/digitalOMySQLCreds.txt", "r") or die("Unable to open file!");
 //$wmsadmin_creds = fread($myfile,filesize("/var/www/html/digitalOMySQLCreds.txt"));
@@ -31,7 +35,7 @@ if ($conn->connect_error) {
 } 
 echo "<p>Connected successfully<p>";
 
-$insert_sql = "INSERT INTO wmssandbox_digitalO.orders (sys_order_id, order_type, order_status, destination_facility) VALUES ($payloadOrderId, ' $payloadOrderType', 'Created', $payloadDestination)";
+$insert_sql = "INSERT INTO wmssandbox_digitalO.orders (sys_order_id, order_type, order_status, destination_facility, order_time, order_created_dttm) VALUES ($payloadOrderId, ' $payloadOrderType', 'Created', $payloadDestination, '$uploadTime', sysdate())";
 echo $insert_sql;
 
 if ($conn->query($insert_sql) === TRUE) {

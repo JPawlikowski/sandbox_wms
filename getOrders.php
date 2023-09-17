@@ -37,20 +37,20 @@ $conn = new mysqli($servername, $username, $wms_creds);
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 } 
-echo "<p>Connected successfully<p>";
+//echo "<p>Connected successfully<p>";
 
-$sql = "SELECT sys_order_id, order_type, order_status, destination_facility, order_time FROM wmssandbox_digitalO.orders";
+$sql = "SELECT sys_order_id, order_type, order_status, destination_facility, order_time FROM wmssandbox_digitalO.orders order by order_time desc";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
   // output data of each row
   echo "<table>
   <tr>
-  <th>sys_order_id</th>
-  <th>order_type</th>
-  <th>order_status</th>
-  <th>destination_facility</th>
-  <th>order_time</th>
+  <th>Order id</th>
+  <th>Order type</th>
+  <th>Order status</th>
+  <th>Destination facility</th>
+  <th>Order time</th>
   </tr>";
 
   while($order_row = $result->fetch_assoc()) {
