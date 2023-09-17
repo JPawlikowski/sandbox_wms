@@ -30,6 +30,22 @@ function showInvnFunc() {
   xmlhttp.send();
   };
 
+  function showOrderLinesFunc() {
+  var orderId = document.getElementById("orderLinesOrderId").value;
+  if (isNaN(orderId) == true) {
+    document.getElementById("orderLinesPlaceHold").innerHTML = "Not a valid order number";
+  }
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("orderLinesPlaceHold").innerHTML = this.responseText;
+    }
+  };
+  //xmlhttp.open("GET","getOrder.php?q=",true);
+  xmlhttp.open("GET","getOrderLines.php?q="+orderId,true);
+  xmlhttp.send();
+  };
+
   function uploadOrderFunc() {
     //var orderRawData = {orderId: 0987654, destination: 9999, orderType: 'Regular'};
     var orderRawData = document.getElementById("orderInput").value;
@@ -72,7 +88,17 @@ function showInvnFunc() {
 
 <button type="button" onclick="showInvnFunc()">Display Inventory Data</button>
 
-<div id="invnPlaceHold"><b>Order info will be listed here...</b></div>
+<div id="invnPlaceHold"><b>Inventory info will be listed here...</b></div>
+
+<br>
+
+<button type="button" onclick="showOrderLinesFunc()">Display Order Lines Data</button>
+
+<p>Search for order lines by order id :</p>
+
+<input type="text" id="orderLinesOrderId" placeholder="Order id.."></input>
+
+<div id="orderLinesPlaceHold"><b>Order Line info will be listed here...</b></div>
 
 <br>
 

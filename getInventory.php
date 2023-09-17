@@ -12,7 +12,9 @@ table, td, th {
   padding: 5px;
 }
 
-th {text-align: left;}
+th {
+  text-align: left;
+}
 </style>
 </head>
 <body>
@@ -37,9 +39,9 @@ $conn = new mysqli($servername, $username, $wms_creds);
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 } 
-echo "<p>Connected successfully<p>";
+//echo "<p>Connected successfully<p>";
 
-$sql = "SELECT item_desc, pack_qty, on_hand_qty, allocated_qty, mod_dttm FROM wmssandbox_digitalO.inventory";
+$sql = "SELECT item_desc, pack_qty, on_hand_qty, allocated_qty, mod_dttm FROM wmssandbox_digitalO.inventory order by mod_dttm desc";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -65,7 +67,7 @@ if ($result->num_rows > 0) {
   echo "</table>";
   
 } else {
-  echo "0 orders results";
+  echo "0 inventory results";
 }
 $conn->close();
 ?>
