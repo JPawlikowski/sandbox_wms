@@ -17,6 +17,16 @@ function showOrdersFunc() {
   xmlhttp.send();
   };
 
+function showOrderUploadFunc() {
+  var x = document.getElementById("orderUploadArea");
+  if (x.style.visibility === "hidden") {
+    x.style.visibility = "visible";
+  } else {
+    x.style.visibility = "hidden";
+  }
+};
+
+
 function showInvnFunc() {
   var str = 1;
   var xmlhttp = new XMLHttpRequest();
@@ -79,12 +89,17 @@ function showInvnFunc() {
 <p></p>
   
 <div class='flex-container'>
+<span style>
 
-<button type="button" onclick="showOrdersFunc()">Display Order Data</button>
+<button type="button" onclick="showOrdersFunc()" style="float:left;">Display Order Data</button>
+<button type="button" onclick="showOrderUploadFunc()" style="float:left;">Upload Order</button>
 
+</span>
 <div id="orderPlaceHold"><b>Order info will be listed here...</b></div>
 
 <br>
+
+<hr style=>
 
 <button type="button" onclick="showInvnFunc()">Display Inventory Data</button>
 
@@ -92,21 +107,31 @@ function showInvnFunc() {
 
 <br>
 
-<button type="button" onclick="showOrderLinesFunc()">Display Order Lines Data</button>
+<hr style=>
 
 <p>Search for order lines by order id :</p>
 
 <input type="text" id="orderLinesOrderId" placeholder="Order id.."></input>
 
+<button type="button" onclick="showOrderLinesFunc()">Display Order Lines Data</button>
+
 <div id="orderLinesPlaceHold"><b>Order Line info will be listed here...</b></div>
 
 <br>
 
+<hr style=>
+
+<div id="orderUploadArea" style="visibility: hidden;">
+
 <button type="button" onclick="uploadOrderFunc()">Upload Order</button>
 
-<textarea id="orderInput" rows="7" cols="50"></textarea>
+<br>
 
-<div id="orderUploadPlaceHold"><b>Order upload status...</b></div>
+<textarea id="orderInput" rows="7" cols="50" ></textarea>
+
+<div id="orderUploadPlaceHold" ><b>Order upload status...</b></div>
+
+</div>
 
 </div>
 </body>
